@@ -26,26 +26,28 @@ const App = () => {
 
   const search = (searchValue) => {
     
-
-    return (
-      getApiURL(searchValue)
-        //fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=3f607a82`)
+      setLoading(true);
+    
+      
+        getApiURL(searchValue)
+        // fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=3f607a82`)
         // .then((response) => response.json())
         .then((res) => {
           console.log(res.data);
           console.log(res.data.Response);
-          setLoading(false);
-          setMovies(res.Search);
-          // if (res.data.Response === 'True') {
+          //  setLoading(false);
+          // setMovies(res.Search);
+          // if (res.data.Response === "True") {
           //   setLoading(false);
-          //   setMovies(res.Search);
+          //   setMovies(res.data.Search);
           //   // console.log(loading)
           //   // console.log(movies);
           // } else {
           //   setLoading(true);
           // }
         })
-    );
+    
+    
   };
 
   return (
@@ -53,12 +55,8 @@ const App = () => {
       <style>{"body { background-color: black; }"}</style>
       <Header text="NetFlix" />
       <Search search={search} />
-      <div>
-       { movies.map((movie) => (
-        <h1>{movie.Title}</h1>
-      ))}
-      </div>
-      {/* <div className="movies">
+    
+      <div className="movies">
         {loading ? (
           <div style={{ paddingLeft: "50%", paddingTop: "10rem" }}>
             <Box sx={{ display: "flex" }}>
@@ -67,9 +65,10 @@ const App = () => {
           </div>
         ) : (
           movies.map((movie) => (
+        
             <Card
               style={{
-                width: "18rem",
+                width: "12rem",
                 paddingTop: "2rem",
                 paddingLeft: "5rem",
               }}
@@ -86,7 +85,7 @@ const App = () => {
             </Card>
           ))
         )}
-      </div> */}
+      </div>
       
     </div>
   );
